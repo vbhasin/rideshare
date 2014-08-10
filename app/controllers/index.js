@@ -35,6 +35,17 @@ listView.addEventListener('itemclick', function(e){
     e.section.updateItemAt(e.itemIndex, item);
 });
 
+var button = Titanium.UI.createButton({
+   title: 'Search',
+   top: 200,
+   width: 100,
+   height: 50
+});
+button.addEventListener('click',function(e)
+{
+   Titanium.API.info("You clicked the button");
+});
 
 win.add(listView);
+win.add(button);
 navWin.open();
