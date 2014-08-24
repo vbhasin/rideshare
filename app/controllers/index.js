@@ -1,5 +1,7 @@
 var win = Ti.UI.createWindow({backgroundColor: 'white', fullscreen: true, title: 'Search'});
 var navWin = Ti.UI.iOS.createNavigationWindow({window: win});
+//Current window (employee window)
+//var homeWin = Ti.UI.currentWindow;
 
 var listView = Ti.UI.createListView();
 if (OS_IOS) {
@@ -9,14 +11,14 @@ if (OS_IOS) {
 var sections = [];
 var fromSection = Ti.UI.createListSection({ headerTitle: 'From'});
 var fromDataSet = [
-    {properties: { title: 'Coppell', accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_DISCLOSURE}, template: Ti.UI.LIST_ITEM_TEMPLATE_DEFAULT}
+    {properties: { title: 'Point A', accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_DISCLOSURE}, template: Ti.UI.LIST_ITEM_TEMPLATE_DEFAULT}
 ];
 fromSection.setItems(fromDataSet);
 sections.push(fromSection);
 
 var toSection = Ti.UI.createListSection({ headerTitle: 'To'});
 var toDataSet = [
-    {properties: { title: 'Addison', accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_DISCLOSURE}, template: Ti.UI.LIST_ITEM_TEMPLATE_DEFAULT}
+    {properties: { title: 'Point B', accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_DISCLOSURE}, template: Ti.UI.LIST_ITEM_TEMPLATE_DEFAULT}
 ];
 toSection.setItems(toDataSet);
 sections.push(toSection);
@@ -35,17 +37,17 @@ listView.addEventListener('itemclick', function(e){
     e.section.updateItemAt(e.itemIndex, item);
 });
 
-var button = Titanium.UI.createButton({
+var searchButton = Titanium.UI.createButton({
    title: 'Search',
-   top: 200,
+   top: 225,
    width: 100,
    height: 50
 });
-button.addEventListener('click',function(e)
+searchButton.addEventListener('click',function(e)
 {
-   Titanium.API.info("You clicked the button");
+   Titanium.API.info("You clicked search button");
 });
 
 win.add(listView);
-win.add(button);
+win.add(searchButton);
 navWin.open();
