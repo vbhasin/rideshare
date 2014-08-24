@@ -1,7 +1,5 @@
 var win = Ti.UI.createWindow({backgroundColor: 'white', fullscreen: true, title: 'Search'});
 var navWin = Ti.UI.iOS.createNavigationWindow({window: win});
-//Current window (employee window)
-//var homeWin = Ti.UI.currentWindow;
 
 var listView = Ti.UI.createListView();
 if (OS_IOS) {
@@ -46,6 +44,30 @@ var searchButton = Titanium.UI.createButton({
 searchButton.addEventListener('click',function(e)
 {
    Titanium.API.info("You clicked search button");
+   var newWindow = Titanium.UI.createWindow({
+        title:'New Window',
+        backgroundColor:'#AAA',
+    });
+    /*
+    newWindow.addEventListener('click',function(eventObject){
+            alert("Window is Clicked");
+        });*/
+    
+    var backButton = Ti.UI.createButton({
+    //backgroundImage: 'images/back.png',
+    font: { fontSize: 13, fontWeight: 'bold' },
+    height: 28,
+    title: " Back",
+    width: 51
+	});
+    newWindow.leftNavButton = backButton;
+    backButton.addEventListener('click', function()
+    {
+    	Titanium.API.info('Back button was clicked'); // to confirm its being called
+        // do the stuff here
+        newWindow.close();
+     });
+    newWindow.open({modal:true});
 });
 
 win.add(listView);
